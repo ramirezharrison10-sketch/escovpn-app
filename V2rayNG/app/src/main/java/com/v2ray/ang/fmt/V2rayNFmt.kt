@@ -31,7 +31,10 @@ object V2rayNFmt : FmtBase() {
                     if (remarks.isNotEmpty()) {
                         when (item.ConfigType) {
                             101 -> policyGroupFilter = remarks.joinToString("|", "^(", ")$") { Regex.escape(it) }
-                            102 -> proxyChainProfileList = remarks
+                            102 -> {
+                                proxyChainProfileList = remarks
+                                description = remarks.joinToString(" -> ")
+                            }
                         }
                     }
                 }
